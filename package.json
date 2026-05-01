@@ -1,0 +1,16 @@
+{
+  "name": "opencode-plugins",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^6.0.3"
+  },
+  "dependencies": {
+    "@opencode-ai/plugin": "^1.14.31"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "name": "opencode-open-in-desktop",
+  "version": "1.0.0",
+  "type": "module",
+  "license": "MIT",
+  "exports": {
+    "./tui": "./src/index.ts"
+  },
+  "files": [
+    "src"
+  ],
+  "peerDependencies": {
+    "@opencode-ai/plugin": ">=1"
+  },
+  "peerDependenciesMeta": {
+    "@opencode-ai/plugin": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@opencode-ai/plugin": "^1.14.31",
+    "@types/bun": "latest"
+  },
+  "engines": {
+    "opencode": "^1"
+  }
+}
