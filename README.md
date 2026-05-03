@@ -4,9 +4,9 @@ A collection of plugins and tools for [OpenCode](https://opencode.ai).
 
 ## Packages
 
-| Package | Description | Install |
-|---------|-------------|---------|
-| [opencode-open-in-desktop](./packages/opencode-open-in-desktop) | Open current project in OpenCode Desktop app | `npm i -g opencode-open-in-desktop` |
+| Package                                                         | Description                                              | Install                                                                             |
+| --------------------------------------------------------------- | -------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| [opencode-open-in-desktop](./packages/opencode-open-in-desktop) | Open current project / directory in OpenCode Desktop app | `bun i -g opencode-open-in-desktop` and `opencode plug -g opencode-open-in-desktop` |
 
 ## Development
 
@@ -30,7 +30,7 @@ cd packages/opencode-open-in-desktop && bun link
 
 ### Project structure
 
-```
+```text
 opencode-plugins/
 ├── packages/
 │   └── opencode-open-in-desktop/   # CLI + TUI plugin
