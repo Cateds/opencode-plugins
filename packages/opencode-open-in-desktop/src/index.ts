@@ -1,11 +1,18 @@
 import type { TuiPluginModule } from "@opencode-ai/plugin/tui";
 import Bun from "bun";
 
-const OPEN_COMMANDS: Record<string, string[]> = {
+export const OPEN_COMMANDS: Record<string, string[]> = {
   darwin: ["open"],
   linux: ["xdg-open"],
   win32: ["cmd", "/c", "start", ""],
 };
+
+export function generateOpenCommand(dir: string): string[] | null {
+  const url = `opencode://open-project?directory=${encodeURIComponent(dir)}`;
+  const cmd = OPEN_COMMANDS[process.platform];
+  if (!cmd) return null;
+  return [...cmd, url];
+}
 
 const plugin: TuiPluginModule = {
   id: "open-in-desktop",
@@ -22,10 +29,12 @@ const plugin: TuiPluginModule = {
         },
         onSelect: () => {
           const dir = api.state.path.directory;
-          const url = `opencode://open-project?directory=${encodeURIComponent(dir)}`;
-          const cmd = OPEN_COMMANDS[process.platform];
-          if (!cmd) return;
-          Bun.spawn([...cmd, url], { stdout: "ignore", stderr: "ignore" });
+          const command = generateOpenCommand(dir);
+          if (!command) {
+            console.error("Unsupported platform for open-in-desktop plugin");
+            return;
+          }
+          Bun.spawn(command, { stdout: "ignore", stderr: "ignore" });
         },
       },
     ]);

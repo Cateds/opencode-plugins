@@ -1,10 +1,35 @@
 {
   "name": "opencode-open-in-desktop",
   "version": "1.0.0",
-  "type": "module",
+  "description": "Open current project directory in OpenCode Desktop app",
+  "author": {
+    "name": "Cateds",
+    "email": "this.id.was.used@outlook.com",
+    "url": "https://github.com/cateds"
+  },
   "license": "MIT",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cateds/opencode-plugins.git",
+    "directory": "packages/opencode-open-in-desktop"
+  },
+  "homepage": "https://github.com/cateds/opencode-plugins/tree/main/packages/opencode-open-in-desktop",
+  "bugs": {
+    "url": "https://github.com/cateds/opencode-plugins/issues"
+  },
+  "keywords": [
+    "opencode",
+    "opencode-plugin",
+    "desktop",
+    "cli"
+  ],
   "exports": {
-    "./tui": "./src/index.ts"
+    "./tui": "./src/index.ts",
+    "./cli": "./src/cli.ts"
+  },
+  "bin": {
+    "oc-desktop": "./src/cli.ts"
   },
   "files": [
     "src"
