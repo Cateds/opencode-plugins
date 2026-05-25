@@ -7,19 +7,6 @@ Interactive PTY management plugin for [OpenCode](https://opencode.ai). Run backg
 
 > This is a fork of [opencode-pty](https://github.com/shekohex/opencode-pty) by shekohex, rewritten for Node.js compatibility.
 
-## Installation
-
-```bash
-# npm
-npm i @cateds/opencode-pty
-
-# bun
-bun i @cateds/opencode-pty
-
-# pnpm
-pnpm i @cateds/opencode-pty
-```
-
 ## Usage
 
 ### OpenCode Plugin
@@ -28,9 +15,7 @@ Add to your `opencode.json`:
 
 ```json
 {
-  "plugin": [
-    "@cateds/opencode-pty"
-  ]
+  "plugin": ["@cateds/opencode-pty"]
 }
 ```
 
@@ -38,13 +23,13 @@ Add to your `opencode.json`:
 
 The plugin provides 6 tools:
 
-| Tool | Description |
-| ---- | ----------- |
-| `pty_spawn` | Spawn a new PTY session to run a command |
-| `pty_read` | Read output with pagination and regex filtering |
-| `pty_write` | Send input to an active session |
-| `pty_list` | List all PTY sessions |
-| `pty_kill` | Terminate a session |
+| Tool        | Description                                        |
+| ----------- | -------------------------------------------------- |
+| `pty_spawn` | Spawn a new PTY session to run a command           |
+| `pty_read`  | Read output with pagination and regex filtering    |
+| `pty_write` | Send input to an active session                    |
+| `pty_list`  | List all PTY sessions                              |
+| `pty_kill`  | Terminate a session                                |
 | `pty_await` | Wait for a session to exit (with optional timeout) |
 
 ### Slash Command
@@ -59,9 +44,9 @@ Opens the PTY Sessions Web Interface in your browser for real-time monitoring.
 
 The plugin uses runtime-conditional imports to support both Bun and Node.js:
 
-| Runtime | PTY Library | Environment |
-| ------- | ----------- | ----------- |
-| Bun | `bun-pty` | CLI/TUI |
+| Runtime | PTY Library        | Environment      |
+| ------- | ------------------ | ---------------- |
+| Bun     | `bun-pty`          | CLI/TUI          |
 | Node.js | `@lydell/node-pty` | Desktop/Electron |
 
 The web interface is built with React and xterm.js, providing real-time terminal monitoring via WebSocket.
