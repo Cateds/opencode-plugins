@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "lib": ["ESNext", "DOM"],
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "paths": {
+      "opencode-pty/*": ["./src/*"],
+      "#pty": ["./src/plugin/pty/pty.bun.ts"]
+    }
+  },
+  "include": ["src", "test", "index.ts"]
+}

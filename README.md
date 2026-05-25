@@ -7,6 +7,7 @@ A collection of plugins and tools for [OpenCode](https://opencode.ai).
 | Package                                                         | Description                                              | Install                                                                             |
 | --------------------------------------------------------------- | -------------------------------------------------------- | ----------------------------------------------------------------------------------- |
 | [opencode-open-in-desktop](./packages/opencode-open-in-desktop) | Open current project / directory in OpenCode Desktop app | `bun i -g opencode-open-in-desktop` and `opencode plug -g opencode-open-in-desktop` |
+| [@cateds/opencode-pty](./packages/opencode-pty)                 | Interactive PTY management for background processes      | `npm i @cateds/opencode-pty` and add to `opencode.json`                             |
 
 ## Development
 
@@ -33,7 +34,8 @@ cd packages/opencode-open-in-desktop && bun link
 ```text
 opencode-plugins/
 ├── packages/
-│   └── opencode-open-in-desktop/   # CLI + TUI plugin
+│   ├── opencode-open-in-desktop/   # CLI + TUI plugin
+│   └── opencode-pty/               # PTY management plugin
 ├── package.json                    # Workspace config
 └── README.md
 ```
