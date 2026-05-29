@@ -1,0 +1,22 @@
+Check the current status of a background task.
+
+Returns whether the task is still running or has finished, along with
+the exit code and how many lines of output are available. Use this to
+check if a long-running task has completed without blocking.
+
+Parameters:
+- `id`: The PTY session ID returned by pty_spawn
+
+Returns:
+- `session_id`: The PTY session ID
+- `state`: running | exited | killed
+- `exit_code`: Exit code (if exited)
+- `signal`: Signal number (if killed)
+- `line_count`: Number of output lines in the buffer
+
+Examples:
+- Check if a build is done: id="pty_a1b2c3d4"
+- Verify a dev server is still running: id="pty_a1b2c3d4"
+
+Use `pty_await` if you need to block until the task finishes.
+Use `pty_read` to inspect the output after checking status.

@@ -1,30 +1,29 @@
-Poll the status of a PTY session, optionally waiting for it to exit.
+Wait for a background task to finish and return its exit status.
 
-## Parameters
+Blocks until the task exits, is killed, or the timeout is reached.
+Use this when you need to wait for a task like a build or test suite
+to complete before reading its output.
+
+Parameters:
 - `id`: The PTY session ID returned by pty_spawn
-- `wait`: When true, block until the session exits or timeout (default: false)
-- `timeout_ms`: Maximum milliseconds to wait when wait=true (default: 60000)
+- `timeoutSeconds`: Maximum wait time in seconds (default: 60)
 
-## Behavior
-- **wait=false** (default): Returns the current session state immediately without blocking. Use this to check if a process is still running.
-- **wait=true**: Blocks until the session exits, is killed, or timeout is reached. Use this when you need to wait for a process to complete before proceeding.
+Behavior:
+- Blocks until the session exits, is killed, or timeout is reached
+- When timeout is reached, returns state: "running" — the task is still alive
+- Once the session exits, the exit code and output line count are available
 
-## Return Format
-Returns `<pty_await_result>` XML with:
-- session_id: The PTY session ID
-- state: running | exited | killed
-- exit_code: Exit code (if exited)
-- signal: Signal number (if killed)
-- line_count: Number of output lines in buffer
+Returns:
+- `session_id`: The PTY session ID
+- `state`: exited | killed | running (timeout reached)
+- `exit_code`: Exit code (if exited)
+- `signal`: Signal number (if killed)
+- `line_count`: Number of output lines in the buffer
 
-## Examples
-- Check status without blocking: id="pty_a1b2c3d4"
-- Wait for process to exit: id="pty_a1b2c3d4", wait=true
-- Wait with custom timeout: id="pty_a1b2c3d4", wait=true, timeout_ms=30000
+After awaiting, use `pty_read` to inspect the full output.
 
-## Notes
-- Use this instead of polling pty_read to check if a process has finished
-- When wait=true and timeout is reached, returns state: "running"
-- The session must exist (was spawned with pty_spawn)
-- This is more efficient than repeated pty_read calls for completion detection
-- After the session exits, use pty_read to inspect the final output
+Examples:
+- Wait for a build to finish: id="pty_a1b2c3d4"
+- Wait with custom timeout: id="pty_a1b2c3d4", timeoutSeconds=120
+
+Use `pty_status` if you only need to check the current state without blocking.

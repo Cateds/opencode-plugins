@@ -3,16 +3,12 @@ import { manager } from '../manager.ts'
 import { buildSessionNotFoundError } from '../utils.ts'
 import { loadTextFile } from './load-text.ts'
 
-const DESCRIPTION = loadTextFile(import.meta.url, 'await.txt')
+const DESCRIPTION = loadTextFile(import.meta.url, 'status.txt')
 
-export const ptyAwait = tool({
+export const ptyStatus = tool({
   description: DESCRIPTION,
   args: {
     id: tool.schema.string().describe('The PTY session ID (from pty_spawn)'),
-    timeoutSeconds: tool.schema
-      .number()
-      .optional()
-      .describe('Maximum wait time in seconds (default: 60)'),
   },
   async execute(args) {
     const session = manager.get(args.id)
@@ -20,12 +16,7 @@ export const ptyAwait = tool({
       throw buildSessionNotFoundError(args.id)
     }
 
-    const timeoutMs = args.timeoutSeconds !== undefined ? args.timeoutSeconds * 1000 : 60000
-    const result = await manager.waitForExit(args.id, timeoutMs)
-    const finalSession = manager.get(args.id)
-    const lineCount = finalSession?.lineCount ?? 0
-
-    return formatResult(args.id, result.state, result.exitCode, result.signal, lineCount)
+    return formatResult(args.id, session.status, session.exitCode, session.exitSignal, session.lineCount)
   },
 })
 
@@ -37,7 +28,7 @@ function formatResult(
   lineCount?: number
 ): string {
   const lines = [
-    `<pty_awaited>`,
+    `<pty_status>`,
     `session_id: ${id}`,
     `state: ${state}`,
   ]
@@ -51,7 +42,7 @@ function formatResult(
   }
 
   lines.push(`line_count: ${lineCount ?? 0}`)
-  lines.push(`</pty_awaited>`)
+  lines.push(`</pty_status>`)
 
   return lines.join('\n')
 }

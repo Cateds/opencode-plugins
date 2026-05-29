@@ -6,6 +6,7 @@ import { ptyWrite } from './plugin/pty/tools/write.ts'
 import { ptyRead } from './plugin/pty/tools/read.ts'
 import { ptyList } from './plugin/pty/tools/list.ts'
 import { ptyKill } from './plugin/pty/tools/kill.ts'
+import { ptyStatus } from './plugin/pty/tools/status.ts'
 import { ptyAwait } from './plugin/pty/tools/await.ts'
 import { PTYServer } from './web/server/server.ts'
 import open from 'open'
@@ -34,6 +35,7 @@ export const PTYPlugin = async ({ client, directory }: PluginContext): Promise<P
       pty_read: ptyRead,
       pty_list: ptyList,
       pty_kill: ptyKill,
+      pty_status: ptyStatus,
       pty_await: ptyAwait,
     },
     config: async (input) => {

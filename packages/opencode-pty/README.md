@@ -21,16 +21,17 @@ Add to your `opencode.json`:
 
 ### Tools
 
-The plugin provides 6 tools:
+The plugin provides 7 tools:
 
-| Tool        | Description                                        |
-| ----------- | -------------------------------------------------- |
-| `pty_spawn` | Spawn a new PTY session to run a command           |
-| `pty_read`  | Read output with pagination and regex filtering    |
-| `pty_write` | Send input to an active session                    |
-| `pty_list`  | List all PTY sessions                              |
-| `pty_kill`  | Terminate a session                                |
-| `pty_await` | Wait for a session to exit (with optional timeout) |
+| Tool        | Description                                             |
+| ----------- | ------------------------------------------------------- |
+| `pty_spawn` | Run a shell command as a background task                |
+| `pty_read`  | Read output with pagination and regex filtering         |
+| `pty_write` | Send input to an active task                            |
+| `pty_list`  | List all background tasks                               |
+| `pty_kill`  | Stop a task                                             |
+| `pty_status`| Check if a task is still running                        |
+| `pty_await` | Wait for a task to finish (blocking)                    |
 
 ### Slash Command
 
